@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Upload</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="document" aria-multiselectable="true" multiple>
+    <button type="submit">Upload File</button>
+</form>
+{% if url %}
+    <p>Uploaded File:</p>
+        {% for link in url %}
+          <li>
+            <a href="{{ url }}"> http://127.0.0.1:8000{{ link }}</a>
+          </li>
+        {% endfor %}
+{% else %}
+    <p>Uploaded File: <a> Please select file </a></p>
+{% endif %}
+{% endblock %}
